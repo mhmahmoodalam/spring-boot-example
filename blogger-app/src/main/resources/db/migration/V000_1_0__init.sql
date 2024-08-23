@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS "user" CASCADE ;
 DROP TABLE IF EXISTS "article" CASCADE ;
 DROP TABLE IF EXISTS "articles_tag_list" CASCADE ;
 
-CREATE TABLE "user" (
+CREATE TABLE security_user (
   id VARCHAR(255) NOT NULL,
    first_name VARCHAR(255) NOT NULL,
    last_name VARCHAR(255),
@@ -15,7 +15,7 @@ CREATE TABLE "user" (
    following BOOLEAN NOT NULL,
    created_at TIMESTAMP WITHOUT TIME ZONE,
    updated_at TIMESTAMP WITHOUT TIME ZONE,
-   CONSTRAINT pk_user PRIMARY KEY (id)
+   CONSTRAINT pk_securityuser PRIMARY KEY (id)
 );
 
 CREATE TABLE article (
@@ -33,10 +33,11 @@ CREATE TABLE article (
 );
 
 CREATE TABLE articles_tag_list (
-  id VARCHAR(255) NOT NULL,
-   tags VARCHAR(255)
+  article_id VARCHAR(255) NOT NULL,
+  tags VARCHAR(255)
 );
 
-ALTER TABLE article ADD CONSTRAINT FK_ARTICLE_ON_AUTHOR FOREIGN KEY (author_id) REFERENCES "user" (id);
+ALTER TABLE article ADD CONSTRAINT FK_ARTICLE_ON_AUTHOR FOREIGN KEY (author_id) REFERENCES security_user (id);
 
-ALTER TABLE articles_tag_list ADD CONSTRAINT fk_articles_tag_list_on_article FOREIGN KEY (id) REFERENCES article (id);
+ALTER TABLE articles_tag_list ADD CONSTRAINT fk_articles_tag_list_on_article FOREIGN KEY (article_id) REFERENCES article (id);
+

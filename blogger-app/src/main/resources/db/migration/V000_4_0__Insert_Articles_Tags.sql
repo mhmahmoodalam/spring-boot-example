@@ -1,0 +1,21 @@
+INSERT into public.articles_tag_list (article_id, tags)
+VALUES
+('7a57ad42-3218-4606-aa0b-2c6705daacaf', 'tech'),
+('7a57ad42-3218-4606-aa0b-2c6705daacaf', 'blog'),
+('7a57ad42-3218-4606-aa0b-2c6705daacaf', 'learning'),
+('1048f344-95b2-4f46-845f-e14d08911f63', 'blog'),
+('a0f008c6-a1f1-4693-b12f-7b1bcf1a7614', 'fun'),
+('a0f008c6-a1f1-4693-b12f-7b1bcf1a7614', 'learning'),
+('a8b22660-ffb1-4104-a3e1-070269791233', 'ai'),
+('a8b22660-ffb1-4104-a3e1-070269791233', 'blog'),
+('5a2e0dd9-ace0-4277-aaf1-b6115aa7d751', 'research'),
+('5a2e0dd9-ace0-4277-aaf1-b6115aa7d751', 'blog'),
+('ac1e1008-19ff-4bbb-b10e-7c5812293598', 'learning'),
+('23a21b6f-1886-4958-afe7-691ed546f6fc', 'learning'),
+('a25d6c1f-704c-4bca-a92f-bb1076c0463c', 'research'),
+('a25d6c1f-704c-4bca-a92f-bb1076c0463c', 'blog'),
+('a25d6c1f-704c-4bca-a92f-bb1076c0463c', 'learning'),
+('3942510f-435d-427a-b654-b0bcddeebefe', 'tech'),
+('3942510f-435d-427a-b654-b0bcddeebefe', 'learning'),
+('f0b105f6-0a6d-4691-b948-f538fd77202e', 'research'),
+('f0b105f6-0a6d-4691-b948-f538fd77202e', 'learning');

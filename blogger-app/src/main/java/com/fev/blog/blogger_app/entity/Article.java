@@ -8,7 +8,6 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -34,16 +33,16 @@ public class Article {
 
     @ElementCollection (fetch = FetchType.EAGER)
     @CollectionTable(name = "articles_tag_list",
-            joinColumns = @JoinColumn(name = "id"))
+            joinColumns = @JoinColumn(name = "article_id"))
     @Column(name = "tags", nullable = true)
     private List<String> tagList ;
 
     private long favoritesCount ;
     private boolean favorited ;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = SecurityUser.class)
     @JoinColumn(nullable = false, name="author_id",referencedColumnName = "id")
-    private User author;
+    private SecurityUser author;
 
     @CreatedDate
     @Column(updatable = false)

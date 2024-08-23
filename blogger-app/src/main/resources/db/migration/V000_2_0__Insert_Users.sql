@@ -1,4 +1,4 @@
-INSERT INTO public.user (id, email, token, username, password, first_name, last_name, bio, image, following, created_at, updated_at)
+INSERT INTO public.security_user (id, email, token, username, password, first_name, last_name, bio, image, following, created_at, updated_at)
 VALUES
 ('c0f4530d-fe1c-42b5-9c7e-0b81fbd1bb03', 'aledgerton0@about.me', null, 'aledgerton0@tiny.cc', '$2a$04$aCxUtYVJxQ.pLw4IBtn36OyDWqMdHgfAXLfKE7gvhswuWGV/cstVK', 'Aurilia', 'Ledgerton', 'reinvent ubiquitous synergies', 'https://robohash.org/perspiciatissolutaquisquam.png?size=50x50&set=set1', true, '2024-01-30T00:25:50Z', '2024-07-12T05:25:15Z'),
 ('b737fd0c-91f4-491b-ac93-885dd84261d0', 'csamudio1@cbc.ca', null, 'csamudio1@bizjournals.com', '$2a$04$mci0vJ7IWezgykDk0hiDs.ZW/V/YyMjB7qXwST/cgLy1JZhDXchBm', 'Charo', 'Samudio', 'innovate sexy content', 'https://robohash.org/essenullaquod.png?size=50x50&set=set1', false, '2023-12-24T03:19:50Z', '2024-02-18T21:52:52Z'),

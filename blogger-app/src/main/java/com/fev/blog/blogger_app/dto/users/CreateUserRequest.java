@@ -24,5 +24,7 @@ public class CreateUserRequest {
     private String password;
     private String bio;
     private String image;
+    private boolean isAdmin;
+    private boolean isModerator;
 
 }

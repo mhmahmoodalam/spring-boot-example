@@ -40,9 +40,9 @@ public class Article {
     private long favoritesCount ;
     private boolean favorited ;
 
-    @ManyToOne(cascade = CascadeType.ALL, targetEntity = SecurityUser.class)
+    @ManyToOne(cascade = CascadeType.ALL, targetEntity = Profile.class)
     @JoinColumn(nullable = false, name="author_id",referencedColumnName = "id")
-    private SecurityUser author;
+    private Profile author;
 
     @CreatedDate
     @Column(updatable = false)

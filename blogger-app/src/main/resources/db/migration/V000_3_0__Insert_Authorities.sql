@@ -1,0 +1,24 @@
+INSERT INTO public.authority (id,name, created_at, updated_at)
+VALUES
+('268a57c0-80ba-417e-9e1f-bcb12e3c98d8', 'ROLE_ADMIN', '2024-01-30T00:25:50Z', '2024-07-12T05:25:15Z'),
+('6634ac9c-63f1-4314-91e9-da4233b0ffd6', 'ROLE_MODERATOR', '2023-12-24T03:19:50Z', '2024-02-18T21:52:52Z'),
+('b9025b61-be47-4a4b-957c-3e0e58a3d18f', 'ROLE_READER', '2024-03-14T07:20:41Z', '2024-03-18T17:59:16Z');
+
+INSERT INTO public.users_authorities (authority_id,security_user_id)
+VALUES
+('268a57c0-80ba-417e-9e1f-bcb12e3c98d8','6260ea11-a665-4403-a03b-24380e7672c6'),
+('6634ac9c-63f1-4314-91e9-da4233b0ffd6','6260ea11-a665-4403-a03b-24380e7672c6'),
+('b9025b61-be47-4a4b-957c-3e0e58a3d18f','6260ea11-a665-4403-a03b-24380e7672c6'),
+( '6634ac9c-63f1-4314-91e9-da4233b0ffd6','2511b53a-edc5-420c-960c-3be2fff1eea1'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','2511b53a-edc5-420c-960c-3be2fff1eea1'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','2c7e3f78-7bf7-41aa-8263-83c21780ab10'),
+( '268a57c0-80ba-417e-9e1f-bcb12e3c98d8','2c7e3f78-7bf7-41aa-8263-83c21780ab10'),
+( '6634ac9c-63f1-4314-91e9-da4233b0ffd6','2c7e3f78-7bf7-41aa-8263-83c21780ab10'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','ac7e3f78-5bf7-4laa-8063-8bc20780ab11'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','19838bef-f9bf-42df-b48f-628629ef1d7c'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','57119de9-343e-499f-8023-0b105183b33e'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','cfa34f19-4651-4dfc-9f5e-635657f2f4ce'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','aaac74c0-515b-4de1-bd80-f12da1973839'),
+( '6634ac9c-63f1-4314-91e9-da4233b0ffd6','89084233-a61b-41c2-bd8a-ebe08c1ccc9d'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','89084233-a61b-41c2-bd8a-ebe08c1ccc9d'),
+( 'b9025b61-be47-4a4b-957c-3e0e58a3d18f','7c2396d0-5958-4e4f-90b1-cd9f355e0336');

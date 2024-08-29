@@ -2,25 +2,21 @@ package com.fev.blog.blogger_app.controllers;
 
 import com.fev.blog.blogger_app.dto.articles.ArticleResponse;
 import com.fev.blog.blogger_app.dto.articles.ArticlesSearchRequest;
+import com.fev.blog.blogger_app.dto.articles.CreateArticleRequest;
 import com.fev.blog.blogger_app.entity.Article;
 import com.fev.blog.blogger_app.service.ArticleService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/articles")
+@AllArgsConstructor
 public class ArticlesController {
 
-    private final ArticleService articleService;
-
-    @Autowired
-    public ArticlesController(ArticleService articleService) {
-        this.articleService = articleService;
-    }
-
+    private ArticleService articleService;
     /**
      * {
      *   "articles": [
@@ -48,7 +44,7 @@ public class ArticlesController {
      * }
      */
     // /articles/feed?offset=1&limit=20
-    @GetMapping("/articles/feed")
+    @GetMapping("/feed")
     public Page<ArticleResponse> getArticleFeeds(@RequestParam(name = "offset") final int offset,
                                                  @RequestParam(name = "limit") final int limit) {
         var pageable = PageRequest.of(offset, limit);
@@ -62,7 +58,7 @@ public class ArticlesController {
      * }
      */
     // /articles?tag=sdf&author=sd&favorited=sdf&offset=1&limit=20
-    @GetMapping("/articles")
+    @GetMapping()
     public Page<ArticleResponse> searchArticles(@RequestParam("tag") String tag,
                                                 @RequestParam("author") String author,
                                                 @RequestParam("favorited") boolean favorited,
@@ -84,6 +80,11 @@ public class ArticlesController {
      * }
      */
     // POST /articles
+//    @PostMapping("/articles")
+//    public Page<ArticleResponse> postArticle(@RequestBody CreateArticleRequest createArticleRequest) {
+//
+//        return articleService.postArticle(createArticleRequest);
+//    }
     /**
      * {
      *   "article": {

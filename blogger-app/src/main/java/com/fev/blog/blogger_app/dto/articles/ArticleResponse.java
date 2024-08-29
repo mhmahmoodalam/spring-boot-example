@@ -3,8 +3,6 @@ package com.fev.blog.blogger_app.dto.articles;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fev.blog.blogger_app.dto.profiles.ProfileResponse;
-import com.fev.blog.blogger_app.entity.Article;
-import com.fev.blog.blogger_app.entity.SecurityUser;
 import lombok.*;
 
 import java.time.LocalDateTime;

@@ -3,9 +3,9 @@ package com.fev.blog.blogger_app.service;
 import com.fev.blog.blogger_app.assembler.ArticleAssembler;
 import com.fev.blog.blogger_app.dto.articles.ArticleResponse;
 import com.fev.blog.blogger_app.dto.articles.ArticlesSearchRequest;
-import com.fev.blog.blogger_app.entity.Article;
+import com.fev.blog.blogger_app.dto.articles.CreateArticleRequest;
 import com.fev.blog.blogger_app.repository.ArticleRepository;
-import com.fev.blog.blogger_app.repository.ArticleSpecficiations;
+import com.fev.blog.blogger_app.repository.ArticleSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -33,10 +33,11 @@ public class ArticleService {
 
     public Page<ArticleResponse> searchArticles(ArticlesSearchRequest articlesSearchRequest) {
         var pageable = PageRequest.of(articlesSearchRequest.getOffset(),articlesSearchRequest.getLimit());
-        var articlesList= articleRepository.findAll(ArticleSpecficiations.authoredBy(articlesSearchRequest.getAuthor())
-                .and(ArticleSpecficiations.containsTags(articlesSearchRequest.getTag())
-                        .and(ArticleSpecficiations.isFavourated(articlesSearchRequest.isFavorited()))),pageable);
+        var articlesList= articleRepository.findAll(ArticleSpecifications.authoredBy(articlesSearchRequest.getAuthor())
+                .and(ArticleSpecifications.containsTags(articlesSearchRequest.getTag())
+                        .and(ArticleSpecifications.isFavourated(articlesSearchRequest.isFavorited()))),pageable);
         var reponseList = articlesList.stream().map(articleAssembler::convertArticleResponseFrom).toList();
         return new PageImpl<>(reponseList,pageable,articlesList.getTotalElements());
     }
+
 }

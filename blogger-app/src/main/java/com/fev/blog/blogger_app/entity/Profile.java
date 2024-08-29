@@ -1,11 +1,15 @@
 package com.fev.blog.blogger_app.entity;
 
+import com.fev.blog.blogger_app.authentication.entity.SecurityUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -13,34 +17,35 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.ZonedDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
 @EntityListeners(AuditingEntityListener.class)
-public class SecurityUser {
+public class Profile {
 
     @Id
     @UuidGenerator
     private String id ;
 
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "security_user_id")
+    private SecurityUser securityUser;
+
     @Column(nullable = false)
-    @Min(3)
-    @Max(50)
+    @Length(min = 3,max = 50)
     private String firstName;
 
-    @Min(3)
-    @Max(50)
+
     @Column(nullable = true)
+    @Length(min = 3,max = 50)
     private String lastName;
 
     @Email
     @Column(nullable = false)
     private String email;
 
-    private String token;
-
     @Column(nullable = false)
     private String username;
-    @Column(nullable = false)
-    private String password;
 
     private String bio;
     private String image;
@@ -53,4 +58,6 @@ public class SecurityUser {
     @LastModifiedDate
     @Column(updatable = true)
     private ZonedDateTime updatedAt;
+
+
 }

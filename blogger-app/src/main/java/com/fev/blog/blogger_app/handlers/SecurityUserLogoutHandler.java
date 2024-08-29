@@ -1,14 +1,12 @@
-package com.fev.blog.blogger_app.authentication.handlers;
+package com.fev.blog.blogger_app.handlers;
 
 import com.fev.blog.blogger_app.authentication.repository.SecurityUserDetailsRepository;
-import com.fev.blog.blogger_app.authentication.service.AuthService;
 import com.fev.blog.blogger_app.authentication.service.JwtService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Component;
 
@@ -29,7 +27,7 @@ public class SecurityUserLogoutHandler implements LogoutHandler {
     }
 
     @Transactional
-    private void clearAccessToken(String securityUserName){
+    private void clearAccessToken(String securityUserName) {
         var securityUser = securityUserDetailsRepository.findBySecurityUserName(securityUserName);
         securityUser.ifPresent((user) -> {
             user.setToken(null);

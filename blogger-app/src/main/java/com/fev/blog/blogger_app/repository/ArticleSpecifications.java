@@ -20,14 +20,14 @@ public class ArticleSpecifications {
     public static Specification<Article> authoredBy(String authorFirstName) {
         return (root, query, builder) -> {
             final Path<String> userId = root.<Profile>get("author").<String>get("firstName");
-            return builder.equal(userId,authorFirstName);
+            return builder.equal(userId, authorFirstName);
         };
     }
 
     public static Specification<Article> isFavourated(boolean isFavourated) {
         return (root, query, builder) -> {
             final Path<Boolean> group = root.<Boolean>get("favorited");
-            return builder.equal(group,isFavourated);
+            return builder.equal(group, isFavourated);
         };
     }
 

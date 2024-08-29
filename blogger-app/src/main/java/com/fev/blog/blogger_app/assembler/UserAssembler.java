@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserAssembler {
 
-    public static UserResponse convertUserResponseFrom(Profile user){
+    public static UserResponse convertUserResponseFrom(Profile user) {
         return new UserResponse();
     }
 }

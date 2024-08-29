@@ -19,9 +19,9 @@ public class Authority {
 
     @Id
     @UuidGenerator
-    private String id ;
+    private String id;
 
-    private String name ;
+    private String name;
 
     @ManyToMany(mappedBy = "grantedAuthorities",
             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})

@@ -14,18 +14,18 @@ public class ArticleAssembler {
     @Autowired
     public ArticleAssembler(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
-       // addMappingConfiguration();
+        // addMappingConfiguration();
     }
 
     private void addMappingConfiguration() {
-        this.modelMapper.createTypeMap(Article.class,ArticleResponse.class);
+        this.modelMapper.createTypeMap(Article.class, ArticleResponse.class);
 //                .addMappings( mapper -> {
 //                    mapper.map(Article::getAuthor, ArticleResponse::setAuthor);
 //
 //                });
     }
 
-    public ArticleResponse convertArticleResponseFrom(Article article){
+    public ArticleResponse convertArticleResponseFrom(Article article) {
         return modelMapper.map(article, ArticleResponse.class);
     }
 }

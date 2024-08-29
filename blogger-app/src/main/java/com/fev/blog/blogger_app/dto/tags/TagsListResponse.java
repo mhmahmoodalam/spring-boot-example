@@ -1,6 +1,8 @@
 package com.fev.blog.blogger_app.dto.tags;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 

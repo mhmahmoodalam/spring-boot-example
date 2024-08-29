@@ -9,6 +9,7 @@ import org.hibernate.annotations.UuidGenerator;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import java.time.ZonedDateTime;
 import java.util.Set;
 
@@ -20,13 +21,13 @@ public class SecurityUser {
 
     @Id
     @UuidGenerator
-    private String id ;
+    private String id;
 
     @OneToOne(mappedBy = "securityUser", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private Profile profile;
 
-    @Column(nullable = true,length = Length.LONG)
+    @Column(nullable = true, length = Length.LONG)
     private String token;
 
     @Column(nullable = false)
@@ -50,8 +51,6 @@ public class SecurityUser {
             inverseJoinColumns = @JoinColumn(name = "authority_id")
     )
     private Set<Authority> grantedAuthorities;
-
-
 
 
 }

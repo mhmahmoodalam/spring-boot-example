@@ -30,11 +30,11 @@ public class SecurityUserModel implements UserDetails {
         return securityUser.getSecurityUserName();
     }
 
-    public String getToken(){
+    public String getToken() {
         return securityUser.getToken();
     }
 
-    public Profile getProfile(){
+    public Profile getProfile() {
         return securityUser.getProfile();
     }
 }

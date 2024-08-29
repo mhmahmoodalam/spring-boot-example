@@ -3,7 +3,6 @@ package com.fev.blog.blogger_app.service;
 import com.fev.blog.blogger_app.assembler.ArticleAssembler;
 import com.fev.blog.blogger_app.dto.articles.ArticleResponse;
 import com.fev.blog.blogger_app.dto.articles.ArticlesSearchRequest;
-import com.fev.blog.blogger_app.dto.articles.CreateArticleRequest;
 import com.fev.blog.blogger_app.repository.ArticleRepository;
 import com.fev.blog.blogger_app.repository.ArticleSpecifications;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,18 +25,18 @@ public class ArticleService {
     }
 
     public Page<ArticleResponse> getArticleFeeds(Pageable pageable) {
-        var articlesList= articleRepository.findAll(pageable);
+        var articlesList = articleRepository.findAll(pageable);
         var reponseList = articlesList.stream().map(articleAssembler::convertArticleResponseFrom).toList();
-        return new PageImpl<>(reponseList,pageable,articlesList.getTotalElements());
+        return new PageImpl<>(reponseList, pageable, articlesList.getTotalElements());
     }
 
     public Page<ArticleResponse> searchArticles(ArticlesSearchRequest articlesSearchRequest) {
-        var pageable = PageRequest.of(articlesSearchRequest.getOffset(),articlesSearchRequest.getLimit());
-        var articlesList= articleRepository.findAll(ArticleSpecifications.authoredBy(articlesSearchRequest.getAuthor())
+        var pageable = PageRequest.of(articlesSearchRequest.getOffset(), articlesSearchRequest.getLimit());
+        var articlesList = articleRepository.findAll(ArticleSpecifications.authoredBy(articlesSearchRequest.getAuthor())
                 .and(ArticleSpecifications.containsTags(articlesSearchRequest.getTag())
-                        .and(ArticleSpecifications.isFavourated(articlesSearchRequest.isFavorited()))),pageable);
+                        .and(ArticleSpecifications.isFavourated(articlesSearchRequest.isFavorited()))), pageable);
         var reponseList = articlesList.stream().map(articleAssembler::convertArticleResponseFrom).toList();
-        return new PageImpl<>(reponseList,pageable,articlesList.getTotalElements());
+        return new PageImpl<>(reponseList, pageable, articlesList.getTotalElements());
     }
 
 }

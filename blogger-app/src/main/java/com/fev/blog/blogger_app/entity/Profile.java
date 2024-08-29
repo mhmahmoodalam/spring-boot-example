@@ -3,9 +3,6 @@ package com.fev.blog.blogger_app.entity;
 import com.fev.blog.blogger_app.authentication.entity.SecurityUser;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.UuidGenerator;
@@ -24,7 +21,7 @@ public class Profile {
 
     @Id
     @UuidGenerator
-    private String id ;
+    private String id;
 
 
     @OneToOne(fetch = FetchType.LAZY)
@@ -32,12 +29,12 @@ public class Profile {
     private SecurityUser securityUser;
 
     @Column(nullable = false)
-    @Length(min = 3,max = 50)
+    @Length(min = 3, max = 50)
     private String firstName;
 
 
     @Column(nullable = true)
-    @Length(min = 3,max = 50)
+    @Length(min = 3, max = 50)
     private String lastName;
 
     @Email

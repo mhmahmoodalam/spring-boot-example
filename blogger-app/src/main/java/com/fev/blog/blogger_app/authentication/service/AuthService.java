@@ -9,10 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -30,9 +27,9 @@ public class AuthService {
     @Transactional
     public UserLoginResponse login(UserLoginRequest loginRequest) {
         var authenticationRequest = UsernamePasswordAuthenticationToken
-                .unauthenticated(loginRequest.getEmail(),loginRequest.getPassword());
+                .unauthenticated(loginRequest.getEmail(), loginRequest.getPassword());
         var authentication = authenticationManager.authenticate(authenticationRequest);
-        if(authentication.isAuthenticated()){
+        if (authentication.isAuthenticated()) {
             var securityUser = securityUserDetailsRepository.findBySecurityUserName(authentication.getName());
             var extraClaims = new HashMap<String, Object>();
             extraClaims.put("username", authentication.getName());
@@ -43,16 +40,15 @@ public class AuthService {
                 securityUserDetailsRepository.saveAndFlush(user);
             });
             return new UserLoginResponse(HttpStatus.OK.name(), token);
-        }else{
+        } else {
             return new UserLoginResponse(HttpStatus.BAD_REQUEST.name(), null);
         }
     }
 
 
-
     private String populateAuthorities(Authentication authentication) {
         Set<String> authoritiesSet = new HashSet<>();
         authentication.getAuthorities().forEach(auth -> authoritiesSet.add(auth.getAuthority()));
-        return String.join(",",authoritiesSet);
+        return String.join(",", authoritiesSet);
     }
 }

@@ -22,21 +22,21 @@ public class UserService {
     private ModelMapper modelMapper;
     private PasswordEncoder passwordEncoder;
 
-    public SecurityUser createSecurityUser(CreateUserRequest createUserRequest){
+    public SecurityUser createSecurityUser(CreateUserRequest createUserRequest) {
         var securityUser = userRepository.findBySecurityUserName(createUserRequest.getEmail());
-        if(securityUser.isPresent()){
-            throw  new UsernameNotFoundException("User Already exists");
+        if (securityUser.isPresent()) {
+            throw new UsernameNotFoundException("User Already exists");
         }
         var newUser = modelMapper.map(createUserRequest, SecurityUser.class);
         newUser.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
         newUser.setSecurityUserName(createUserRequest.getEmail());
         userRepository.save(newUser);
         var authorities = new HashSet<Authority>();
-        if(createUserRequest.isAdmin()){
+        if (createUserRequest.isAdmin()) {
             authorities.add(Roles.ADMIN.toAuthority());
             authorities.add(Roles.MODERATOR.toAuthority());
         }
-        if(createUserRequest.isModerator()){
+        if (createUserRequest.isModerator()) {
             authorities.add(Roles.MODERATOR.toAuthority());
         }
         authorities.add(Roles.READER.toAuthority());
@@ -47,8 +47,8 @@ public class UserService {
 
     public Optional<SecurityUser> getByUserName(String username) {
         var securityUser = userRepository.findBySecurityUserName(username);
-        if(securityUser.isEmpty()){
-            throw  new UsernameNotFoundException("User does not exists");
+        if (securityUser.isEmpty()) {
+            throw new UsernameNotFoundException("User does not exists");
         }
         return securityUser;
     }

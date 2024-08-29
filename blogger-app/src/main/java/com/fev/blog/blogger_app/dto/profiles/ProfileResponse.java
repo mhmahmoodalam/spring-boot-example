@@ -1,7 +1,9 @@
 package com.fev.blog.blogger_app.dto.profiles;
 
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter

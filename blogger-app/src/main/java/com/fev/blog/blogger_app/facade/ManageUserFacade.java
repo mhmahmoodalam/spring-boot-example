@@ -3,7 +3,6 @@ package com.fev.blog.blogger_app.facade;
 import com.fev.blog.blogger_app.authentication.entity.SecurityUser;
 import com.fev.blog.blogger_app.dto.users.CreateUserRequest;
 import com.fev.blog.blogger_app.dto.users.UserResponse;
-import com.fev.blog.blogger_app.entity.Profile;
 import com.fev.blog.blogger_app.service.ProfileService;
 import com.fev.blog.blogger_app.service.UserService;
 import jakarta.transaction.Transactional;
@@ -20,7 +19,7 @@ public class ManageUserFacade {
     private ProfileService profileService;
 
     @Transactional
-    public UserResponse register(CreateUserRequest newUserRequest){
+    public UserResponse register(CreateUserRequest newUserRequest) {
         var securityUser = userService.createSecurityUser(newUserRequest);
         return profileService.registerUser(newUserRequest, securityUser);
     }
@@ -33,7 +32,7 @@ public class ManageUserFacade {
         return userResponse.orElse(null);
     }
 
-    private UserResponse mapUserDataToResponse(SecurityUser securityUser){
+    private UserResponse mapUserDataToResponse(SecurityUser securityUser) {
         UserResponse userResponse = new UserResponse();
         var profile = securityUser.getProfile();
         userResponse.setId(profile.getId());

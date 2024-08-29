@@ -18,30 +18,30 @@ public class Article {
 
     @Id
     @UuidGenerator
-    private String id ;
+    private String id;
 
-    private String slug ;
+    private String slug;
 
-    @Column(nullable = false,length = Length.LONG)
-    private String title  ;
+    @Column(nullable = false, length = Length.LONG)
+    private String title;
 
-    @Column(nullable = false,length = Length.LOB_DEFAULT)
-    private String body ;
+    @Column(nullable = false, length = Length.LOB_DEFAULT)
+    private String body;
 
-    @Column(nullable = true,length = Length.LONG)
-    private String description ;
+    @Column(nullable = true, length = Length.LONG)
+    private String description;
 
-    @ElementCollection (fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "articles_tag_list",
             joinColumns = @JoinColumn(name = "article_id"))
     @Column(name = "tags", nullable = true)
-    private List<String> tagList ;
+    private List<String> tagList;
 
-    private long favoritesCount ;
-    private boolean favorited ;
+    private long favoritesCount;
+    private boolean favorited;
 
     @ManyToOne(cascade = CascadeType.ALL, targetEntity = Profile.class)
-    @JoinColumn(nullable = false, name="author_id",referencedColumnName = "id")
+    @JoinColumn(nullable = false, name = "author_id", referencedColumnName = "id")
     private Profile author;
 
     @CreatedDate

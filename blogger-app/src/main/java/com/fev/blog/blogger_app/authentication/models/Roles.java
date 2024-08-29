@@ -14,7 +14,7 @@ public enum Roles {
         this.roleName = name;
     }
 
-    public Authority toAuthority(){
+    public Authority toAuthority() {
         var authority = new Authority();
         authority.setName(this.roleName);
         return authority;

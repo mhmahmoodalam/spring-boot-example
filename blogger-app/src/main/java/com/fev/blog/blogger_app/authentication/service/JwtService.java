@@ -1,13 +1,13 @@
 package com.fev.blog.blogger_app.authentication.service;
 
 import com.fev.blog.blogger_app.authentication.config.AuthProperties;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import io.jsonwebtoken.Claims;
 
 import javax.crypto.SecretKey;
 import java.util.Date;

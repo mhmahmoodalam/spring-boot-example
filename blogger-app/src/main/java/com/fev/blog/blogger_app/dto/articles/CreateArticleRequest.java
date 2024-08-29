@@ -11,8 +11,8 @@ import java.util.List;
 @JsonTypeName("article")
 public class CreateArticleRequest {
 
-    private String title  ;
-    private String body ;
-    private String description ;
-    private List<String> tagList ;
+    private String title;
+    private String body;
+    private String description;
+    private List<String> tagList;
 }

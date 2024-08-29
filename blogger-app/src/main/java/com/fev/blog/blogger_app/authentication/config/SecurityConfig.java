@@ -1,8 +1,9 @@
+
 package com.fev.blog.blogger_app.authentication.config;
 
 import com.fev.blog.blogger_app.authentication.filters.JWTAuthenticationFilter;
-import com.fev.blog.blogger_app.authentication.handlers.SecurityUserLogoutHandler;
 import com.fev.blog.blogger_app.authentication.repository.SecurityUserDetailsRepository;
+import com.fev.blog.blogger_app.handlers.SecurityUserLogoutHandler;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,19 +21,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.logout.CompositeLogoutHandler;
 import org.springframework.security.web.authentication.logout.HeaderWriterLogoutHandler;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.header.writers.ClearSiteDataHeaderWriter;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 @EnableWebSecurity
 @Configuration
 @AllArgsConstructor
-public class  SecurityConfig {
+public class SecurityConfig {
 
     private JWTAuthenticationFilter jwtAuthenticationFilter;
     private SecurityUserLogoutHandler securityUserLogoutHandler;
@@ -50,7 +47,6 @@ public class  SecurityConfig {
     };
 
 
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         HeaderWriterLogoutHandler clearSiteData = new HeaderWriterLogoutHandler(
@@ -59,7 +55,7 @@ public class  SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry ->
                         authorizationManagerRequestMatcherRegistry
-                                .requestMatchers( HttpMethod.GET,PUBLIC_READ_ENDPOINTS)
+                                .requestMatchers(HttpMethod.GET, PUBLIC_READ_ENDPOINTS)
                                 .permitAll()
                                 .requestMatchers(PUBLIC_WRITE_ENDPOINTS)
                                 .permitAll()
@@ -79,11 +75,11 @@ public class  SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return  PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
     }
 
     @Bean
-    public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService){
+    public AuthenticationProvider authenticationProvider(UserDetailsService userDetailsService) {
         var daoAuthenticatorProvider = new DaoAuthenticationProvider(passwordEncoder());
         daoAuthenticatorProvider.setUserDetailsService(userDetailsService);
         return daoAuthenticatorProvider;
